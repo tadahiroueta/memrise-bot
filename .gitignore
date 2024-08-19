@@ -1,3 +1,4 @@
 bin
 data/app.memrise.com.cookies.json
 obj
+.gitignore
