@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -10,8 +11,9 @@ namespace MemriseBot {
     public class Crawler {
 
         private const string CookiesPath = "../../../data/app.memrise.com.cookies.json", 
-            SelectorsPath = "../../../data/selectors.json";
-        private const int GeneralTimeout = 2;
+            SelectorsPath = "../../../data/selectors.json",
+            MemriseURL = "https://app.memrise.com/dashboard/scenarios";
+        private const int GeneralTimeout = 4;
         private const double QuestionTimeout = .5;
 
         private Dictionary<string, string> ?selectors;
@@ -43,9 +45,11 @@ namespace MemriseBot {
         }
 
         /// <summary>
-        /// Adds cookies from json as credentials for login.
+        /// Logs in to the Memrise website with cookies.
         /// </summary>
-        private void AddCookies() {
+        public void Login() {
+            driver!.Navigate().GoToUrl(MemriseURL);
+
             List<Cookie> ?cookies = JsonConvert.DeserializeObject<List<Cookie>>(File.ReadAllText(CookiesPath));
             foreach (Cookie cookie in cookies!) { 
                 driver!.Manage().Cookies.AddCookie(new OpenQA.Selenium.Cookie(
@@ -56,35 +60,40 @@ namespace MemriseBot {
                     DateTime.Now.AddSeconds(cookie.expires)
                 ));
             }
-        }
 
-        /// <summary>
-        /// Logs in to the Memrise website.
-        /// </summary>
-        public void Login() {
-            driver!.Navigate().GoToUrl("https://app.memrise.com/login/");
-            AddCookies();
-            driver!.Navigate().GoToUrl("https://app.memrise.com/dashboard/scenarios");
+            driver!.Navigate().GoToUrl(MemriseURL);
         }
 
         /// <summary>
         /// Learns a new word.
         /// </summary>
         private void Learn() {
-            string word;
-            try { word = driver!.FindElement(By.CssSelector(selectors!["learn-word"])).Text; }
-            catch (NoSuchElementException) { 
-                // got previous answer wrong 
-                try {
-                    word = driver!.FindElement(By.CssSelector(selectors!["learn-word-correction"])).Text;
-                }
-                catch (NoSuchElementException) {
-                    // program started before the new page loaded
-                    Console.Error.WriteLine("Going too fast."); 
-                    return; 
-                }
+            // multiple possible formats
+            string word = null, translation = null;
+
+            try { 
+                word = driver!.FindElement(By.CssSelector(selectors!["learn-word"])).Text;
+                translation = driver!.FindElement(By.CssSelector(selectors!["learn-translation"])).Text; 
             }
-            string translation = driver!.FindElement(By.CssSelector(selectors!["learn-translation"])).Text;
+            catch (NoSuchElementException) {}
+
+            try { 
+                word = driver!.FindElement(By.CssSelector(selectors!["learn-word-video"])).Text; 
+                translation = driver!.FindElement(By.CssSelector(selectors!["learn-translation-video"])).Text;
+            }
+            catch (NoSuchElementException) {}
+                    
+            try { 
+                word = driver!.FindElement(By.CssSelector(selectors!["learn-word-correction"])).Text; 
+                translation = driver!.FindElement(By.CssSelector(selectors!["learn-translation-correction"])).Text;
+            }
+            catch (NoSuchElementException) {}
+
+            // program started before the new page loaded
+            if (string.IsNullOrEmpty(word) || string.IsNullOrEmpty(translation)) {
+                Console.Error.WriteLine("Going too fast."); 
+                return;
+            } 
 
             translator.Learn(word, translation);
 
@@ -185,10 +194,6 @@ namespace MemriseBot {
             while (true) {
                 CompleteExercise();
 
-                // potentially close out of streak page
-                try { driver!.FindElement(By.CssSelector(selectors!["streak-awesome"])).Click(); }
-                catch (NoSuchElementException) {}
-
                 // potentially close out of subscription page
                 try { driver!.FindElement(By.CssSelector(selectors!["subscription-maybe-later"])).Click(); }
                 catch (NoSuchElementException) {}
@@ -205,11 +210,11 @@ namespace MemriseBot {
             driver!.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(GeneralTimeout);
 
             // loading time
-            Thread.Sleep((int)(GeneralTimeout * 1000 * 7));
+            Thread.Sleep(GeneralTimeout * 1000 * 3);
 
             // get points "earned"
             string pointText = driver!.FindElement(By.CssSelector(selectors!["session-points"])).Text;
-            int points = int.Parse(pointText.Split(" ")[0]) + int.Parse(pointText.Split("+")[1]);
+            int points = int.Parse(pointText.Split(" ")[0]);
 
             // press continue
             driver!.FindElement(By.CssSelector(selectors!["scenario-summary"])).Click();
@@ -219,9 +224,31 @@ namespace MemriseBot {
             catch (NoSuchElementException) {}
 
             driver!.FindElement(By.CssSelector(selectors!["summary-continue"])).Click();
-
+            Thread.Sleep(GeneralTimeout * 1000);
 
             return points;
+        }
+
+        /// <summary>
+        /// Picks a "Learn words" session.
+        /// </summary>
+        private void PickSession() {
+            string title = driver!.FindElement(By.CssSelector(selectors!["session-title"])).Text;
+            if (title == "Hear my words") {
+                driver!.FindElement(By.CssSelector(selectors!["left-arrow"])).Click();
+            }
+            if (title == "Use my words") {
+                driver!.FindElement(By.CssSelector(selectors!["right-arrow"])).Click();
+            }
+            Thread.Sleep(GeneralTimeout * 1000);
+            driver!.FindElement(By.CssSelector(selectors!["start"])).Click();
+
+            // throwing error means the scenario is available
+            try { 
+                driver!.FindElement(By.CssSelector(selectors!["skip-scenario"])).Click();
+                PickSession();
+            }
+            catch (NoSuchElementException) {}
         }
     
         /// <summary>
@@ -231,18 +258,15 @@ namespace MemriseBot {
         public void PlayForPoints(int goal) {
             int pointsLeft = goal;
 
-            // potentially close ad button
+            // potentially close pop ups
             try { driver!.FindElement(By.CssSelector(selectors!["ad-back"])).Click(); }
             catch (NoSuchElementException) {}
-
+ 
             while (pointsLeft > 0) {
-                // start game
-                try { driver!.FindElement(By.CssSelector(selectors!["start"])).Click(); }
-                catch (NoSuchElementException) { 
-                    driver!.FindElement(By.CssSelector(selectors!["start-after-session"])).Click(); 
-                }
-
-                pointsLeft -= PlaySession();
+                PickSession();
+                int earned = PlaySession();
+                Console.WriteLine("Earned " + earned + " points.");
+                pointsLeft -= earned;
             }
         }
     }
