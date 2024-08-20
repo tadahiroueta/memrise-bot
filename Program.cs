@@ -2,21 +2,21 @@
 
 class Program {
     static void Main() {
-        // testing Crawler
         Crawler crawler = new Crawler();
         crawler.Login();
-        crawler.Play();
 
-        // testing Translator
-        // Translator translator = new Translator();
-        // translator.learn("hola", "hello");
-        // translator.learn("adios", "goodbye");
-        // translator.learn("gracias", "thank you");
-        // translator.learn("por favor", "please");
-        // // print
-        // Console.WriteLine(translator.translate("hola"));
-        // Console.WriteLine(translator.translateBack("hello"));
-        // Console.WriteLine(translator.translate("adios"));
-        // Console.WriteLine(translator.translateBack("goodbye"));
+        // get input
+        int ?goal = null;
+        while (goal == null) {
+            Console.WriteLine("How many points would you like? ");
+            try {
+                int input = int.Parse(Console.ReadLine()!);
+                if (input < 0) throw new Exception();
+                goal = input;
+            } 
+            catch { Console.Error.WriteLine("Invalid input."); }
+        }
+
+        crawler.PlayForPoints(goal.Value);
     }
 }

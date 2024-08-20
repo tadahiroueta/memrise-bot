@@ -33,25 +33,19 @@ namespace MemriseBot {
         /// <param name="translation">The meaning of the word translated to known language (likely English).</param>
         public void Learn(string word, string translation) {
             translations![word] = translation;
+            inverseTranslations![translation] = word;
             File.WriteAllText(translationsPath, JsonConvert.SerializeObject(translations));
         }
 
         /// <summary>
-        /// Translates a word from a different language to the known language.
+        /// Translates a word to or from a different language.
         /// </summary>
         /// <param name="word"></param>
         /// <returns>The translation or null if unknown.</returns>        
         public string? Translate(string word) {
-            return translations!.ContainsKey(word) ? translations![word] : null;
-        }
-
-        /// <summary>
-        /// Translates a word from the known language to a different language.
-        /// </summary>
-        /// <param name="translation"></param>
-        /// <returns>The original word or null if unknown.</returns>
-        public string? TranslateBack(string translation) {
-            return inverseTranslations!.ContainsKey(translation) ? inverseTranslations![translation] : null;
+            if (translations!.ContainsKey(word)) return translations![word];
+            if (inverseTranslations!.ContainsKey(word)) return inverseTranslations![word];
+            return null;
         }
 
         /// <summary>

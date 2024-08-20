@@ -3,13 +3,22 @@
   "start": "#floatingBottomPortalRoot > div > div > div > div > div > div.slick-list > div > div.slick-slide.slick-active.slick-current > div > div > div.sc-1txhy2h-0.iVaTfJ > button > div",
   "commit-ad-x": "#button-close-link > a > svg",
   "already-know": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div.sc-ubjny6-0.bwoPAa > div > div.sc-1d3iubg-2.VpED > button > div",
-  "learn-word": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div.sc-wu67sh-1.kjVGDO > div.sc-wu67sh-3.bDUrJx > div > div:nth-child(1) > h2",
+  "learn-word": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div.sc-wu67sh-1.bWVBHp > div > div > div:nth-child(1) > h2",
+  "learn-word-video": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div.sc-wu67sh-1.kjVGDO > div.sc-wu67sh-3.bDUrJx > div > div:nth-child(1) > h2", TODO ADD SELECTION WITHOUT VIDEO
+  "learn-word-correction": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div > div.sc-wu67sh-3.bDUrJx > div > div:nth-child(2) > h2",
   "learn-translation": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div.sc-wu67sh-1.kjVGDO > div.sc-wu67sh-3.bDUrJx > div > div:nth-child(2) > h3",
   "learn-continue": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div.sc-ubjny6-0.bwoPAa > div > div.sc-1d3iubg-2.bNtIdv > button",
   "learn-next": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div.sc-ubjny6-0.bwoPAa > div.sc-1d3iubg-1.gbikdr > div.sc-1d3iubg-2.bNtIdv > div > button",
   "exercise-prompt": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div.sc-mskcyi-0.jayfBp > div.sc-mskcyi-6.mYIXa > h2",
   "exercise-word": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div.sc-mskcyi-0.jayfBp > div.sc-1fe58ld-0.dTBtyp > div > div.sc-1jv6lv2-0.bnESkD > h2 > span",
+  "exercise-I-don't-know": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div.sc-ubjny6-0.bwoPAa > div.sc-1d3iubg-1.gbikdr > div.sc-1d3iubg-2.bNtIdv > div > button",
   "multiple-choice-options": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div.sc-mskcyi-0.jayfBp > div.sc-1fe58ld-0.dTBtyp > div > div.sc-krg8ei-0.hCYXsr > div",
-  "multiple-choice-I-don't-know": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div.sc-ubjny6-0.bwoPAa > div.sc-1d3iubg-1.gbikdr > div.sc-1d3iubg-2.bNtIdv > div > button",
-  "typing-input": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div.sc-mskcyi-0.jayfBp > div.sc-1fe58ld-0.dTBtyp > div > div.sc-1xoighd-0.iBrdvB > div.sc-1xoighd-7.irRWLd > div > input"
+  "typing-input": "#__next > div.sc-35r7d9-0.cQcgyu > div > div > div > div > div.sc-ubjny6-0.kHRkiP > div.sc-mskcyi-0.jayfBp > div.sc-1fe58ld-0.dTBtyp > div > div.sc-1xoighd-0.iBrdvB > div.sc-1xoighd-7.irRWLd > div > input",
+  "streak-awesome": "body > div.sc-1ky8ff5-3.dCnUJu.sc-3zgswr-6.iQysYQ > div > div > div > div.sc-3zgswr-4.ljwdYM > div.sc-3zgswr-5.dxDSCR > button",
+  "session-points": "body > div.sc-1ky8ff5-3.dCnUJu > div > div > div > div.sc-1wv9r1w-6.dGvpdw > div.sc-iz6gf0-0.dGcukH > div.sc-iz6gf0-3.hQlcZ > div",
+  "scenario-summary": "body > div.sc-1ky8ff5-3.dCnUJu > div > div > div > button > div",
+  "summary-continue": "#__next > div:nth-child(2) > div > div > div.sc-zvd7zg-0.fKneCc > div > div > div > div.sc-zvd7zg-8.fNgeiO > button",
+  "start-after-session": "#floatingBottomPortalRoot > div > div > div > div.sc-1txhy2h-2.jnGiHu > div > div.slick-list > div > div.slick-slide.slick-active.slick-current > div > div > div.sc-1txhy2h-0.iVaTfJ > button",
+  "level-up-continue": "body > div:nth-child(34) > div > div > div > button",
+  "subscription-maybe-later": "#__next > div:nth-child(2) > div.sc-36oahp-24.brfKnW > button.sc-12j1hln-0.cqDXvL.sc-36oahp-10.gkTBAx"
 }
