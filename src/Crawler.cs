@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace MemriseBot.src {
@@ -8,6 +9,10 @@ namespace MemriseBot.src {
     public class Crawler {
 
         private const string CookiesPath = "../../../data/app.memrise.com.cookies.json";
+        private Dictionary<string, string> selectors = new Dictionary<string, string> {
+            { "back", "#__next > div > div > div.sc-36oahp-0.inakBl > div.sc-fbt2ce-0.blplTm > a:nth-child(2) > div" },
+            { "start", "#floatingBottomPortalRoot > div > div > div > div > div > div.slick-list > div > div.slick-slide.slick-active.slick-current > div > div > div.sc-1txhy2h-0.iVaTfJ > button > div" }
+        };
         private ChromeDriver ?driver;
 
         /// <summary>
@@ -26,7 +31,10 @@ namespace MemriseBot.src {
         /// <summary>
         /// Initializes a new instance of the <see cref="Crawler"/> class, by opening a new window.
         /// </summary>
-        public Crawler() { driver = new ChromeDriver(); }
+        public Crawler() { 
+            driver = new ChromeDriver(); 
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+        }
 
         /// <summary>
         /// Adds cookies from json as credentials for login.
@@ -51,6 +59,13 @@ namespace MemriseBot.src {
             driver!.Navigate().GoToUrl("https://app.memrise.com/login/");
             AddCookies();
             driver!.Navigate().GoToUrl("https://app.memrise.com/dashboard/scenarios");
+        }
+    
+        /// <summary>
+        /// Plays a game.
+        /// </summary>
+        public void Play() {
+            driver!.FindElement(By.CssSelector(selectors.)).Click();
         }
     }
 }
