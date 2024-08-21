@@ -21,8 +21,9 @@
   "summary-continue": "#__next > div:nth-child(2) > div > div > div.sc-zvd7zg-0.fKneCc > div > div > div > div.sc-zvd7zg-8.fNgeiO > button",
   "level-up-continue": "body > div:nth-child(34) > div > div > div > button",
   "subscription-maybe-later": "#__next > div:nth-child(2) > div.sc-36oahp-24.brfKnW > button.sc-12j1hln-0.cqDXvL.sc-36oahp-10.gkTBAx",
-  "skip-scenario": "body > div:nth-child(28) > div > div > div > span > button.sc-12j1hln-0.eKygvu",
+  "skip-scenario": "button.sc-12j1hln-0.eKygvu",
   "left-arrow": "#floatingBottomPortalRoot > div > div > div > div > div > div.sc-1txhy2h-3.frUmML > span > svg",
   "right-arrow": "#floatingBottomPortalRoot > div > div > div > div > div > div.sc-1txhy2h-4.fJnKsz > span > svg",
-  "session-title": "#floatingBottomPortalRoot > div > div > div > div > div > div.slick-list > div > div.slick-slide.slick-active.slick-current > div > div > div.sc-1txhy2h-8.kJRWcx > div.sc-1txhy2h-9.lowExs"
+  "session-title": "#floatingBottomPortalRoot > div > div > div > div > div > div.slick-list > div > div.slick-slide.slick-active.slick-current > div > div > div.sc-1txhy2h-8.kJRWcx > div.sc-1txhy2h-9.lowExs",
+  "next-stage-continue": "body > div:nth-child(35) > div > div > div > div > button"
 }
