@@ -18,5 +18,6 @@ class Program {
         }
 
         crawler.PlayForPoints(goal.Value);
+        crawler.Close();
     }
 }

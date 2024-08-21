@@ -274,5 +274,9 @@ namespace MemriseBot {
                 pointsLeft -= earned;
             }
         }
+
+        public void Close() {
+            driver.Quit();
+        }
     }
 }
