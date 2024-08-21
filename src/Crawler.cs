@@ -17,7 +17,7 @@ namespace MemriseBot {
         private const double QuestionTimeout = .5;
 
         private Dictionary<string, string> ?selectors;
-        private ChromeDriver driver = new ChromeDriver(); 
+        private ChromeDriver driver; 
         private Translator translator = new Translator();
 
         /// <summary>
@@ -37,6 +37,12 @@ namespace MemriseBot {
         /// Initializes a new instance of the <see cref="Crawler"/> class, by opening a new window.
         /// </summary>
         public Crawler() { 
+            // turn off Selenium's logs
+            var service = ChromeDriverService.CreateDefaultService();
+            service.SuppressInitialDiagnosticInformation = true;
+            service.HideCommandPromptWindow = true;
+            driver = new ChromeDriver(service);
+
             // timeout
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(GeneralTimeout);
 
