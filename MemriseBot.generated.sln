@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemriseBot", "MemriseBot.csproj", "{EF94B0F5-044D-4BD4-AF34-14D9FE639CBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemriseBot", "MemriseBot.csproj", "{38E1C9A5-FBE3-4ECF-8CF3-AD30D0DD1A88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EF94B0F5-044D-4BD4-AF34-14D9FE639CBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF94B0F5-044D-4BD4-AF34-14D9FE639CBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF94B0F5-044D-4BD4-AF34-14D9FE639CBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF94B0F5-044D-4BD4-AF34-14D9FE639CBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38E1C9A5-FBE3-4ECF-8CF3-AD30D0DD1A88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38E1C9A5-FBE3-4ECF-8CF3-AD30D0DD1A88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38E1C9A5-FBE3-4ECF-8CF3-AD30D0DD1A88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38E1C9A5-FBE3-4ECF-8CF3-AD30D0DD1A88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
