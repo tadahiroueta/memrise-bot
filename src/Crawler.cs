@@ -200,8 +200,10 @@ namespace MemriseBot {
             while (true) {
                 CompleteExercise();
 
-                // potentially close out of subscription page
+                // potentially close out of messages
                 try { driver.FindElement(By.CssSelector(selectors!["subscription-maybe-later"])).Click(); }
+                catch (NoSuchElementException) {}
+                try { driver.FindElement(By.CssSelector(selectors!["streak-awesome"])).Click(); }
                 catch (NoSuchElementException) {}
 
                 // session complete

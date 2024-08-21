@@ -25,5 +25,6 @@
   "left-arrow": "#floatingBottomPortalRoot > div > div > div > div > div > div.sc-1txhy2h-3.frUmML > span > svg",
   "right-arrow": "#floatingBottomPortalRoot > div > div > div > div > div > div.sc-1txhy2h-4.fJnKsz > span > svg",
   "session-title": "#floatingBottomPortalRoot > div > div > div > div > div > div.slick-list > div > div.slick-slide.slick-active.slick-current > div > div > div.sc-1txhy2h-8.kJRWcx > div.sc-1txhy2h-9.lowExs",
-  "next-stage-continue": "body > div:nth-child(35) > div > div > div > div > button"
+  "next-stage-continue": "body > div:nth-child(35) > div > div > div > div > button",
+  "streak-awesome": "body > div.sc-1ky8ff5-3.dCnUJu.sc-3zgswr-6.iQysYQ > div > div > div > div.sc-3zgswr-4.ljwdYM > div.sc-3zgswr-5.dxDSCR > button"
 }
