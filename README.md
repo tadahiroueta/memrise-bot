@@ -1,5 +1,5 @@
 # Memrise Bot
-***A web-crawler that earns you points in Memrise***
+***A web-crawler made to earn you points in Memrise***
 
 [Built With](#built-with) · [Features](#features) · [Installation](#installation) · [Usage](#usage)
 
